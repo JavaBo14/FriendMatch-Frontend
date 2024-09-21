@@ -1,6 +1,6 @@
 <template>
   <div id="teamPage">
-    <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch"/>
+    <van-search v-model="searchText" placeholder="搜索房间" @search="onSearch"/>
     <van-tabs v-model:active="active" @change="onTabChange">
       <van-tab title="公开" name="public"/>
       <van-tab title="加密" name="private"/>
@@ -40,7 +40,7 @@ const onTabChange = (name) => {
   }
 }
 
-// 跳转到创建队伍页
+// 跳转到创建房间页
 const toAddTeam = () => {
   router.push({
     path: "/team/add"
@@ -50,7 +50,7 @@ const toAddTeam = () => {
 const teamList = ref([]);
 
 /**
- * 搜索队伍
+ * 搜索房间
  * @param val
  * @param status
  * @returns {Promise<void>}
@@ -66,7 +66,7 @@ const listTeam = async (val = '', status = 0) => {
   if (res?.code === 0) {
     teamList.value = res.data;
   } else {
-    Toast.fail('加载队伍失败，请刷新重试');
+    Toast.fail('加载房间失败，请刷新重试');
   }
 }
 

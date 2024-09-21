@@ -1,6 +1,6 @@
 <template>
   <div id="teamPage">
-    <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch" />
+    <van-search v-model="searchText" placeholder="搜索房间" @search="onSearch" />
     <team-card-list :teamList="teamList" />
     <van-empty v-if="teamList?.length < 1" description="数据为空"/>
   </div>
@@ -20,7 +20,7 @@ const searchText = ref('');
 const teamList = ref([]);
 
 /**
- * 搜索队伍
+ * 搜索房间
  * @param val
  * @returns {Promise<void>}
  */
@@ -34,7 +34,7 @@ const listTeam = async (val = '') => {
   if (res?.code === 0) {
     teamList.value = res.data;
   } else {
-    Toast.fail('加载队伍失败，请刷新重试');
+    Toast.fail('加载房间失败，请刷新重试');
   }
 }
 

@@ -16,7 +16,7 @@
 
       <template #bottom>
         <div>
-          {{ `队伍人数: ${team.hasJoinNum}/${team.maxNum}` }}
+          {{ `房间人数: ${team.hasJoinNum}/${team.maxNum}` }}
         </div>
         <div v-if="team.expireTime">
           {{ '过期时间: ' + team.expireTime }}
@@ -29,17 +29,17 @@
       <template #footer>
         <van-button size="small" type="primary" v-if="team.userId !== currentUser?.id && !team.hasJoin" plain
                     @click="preJoinTeam(team)">
-          加入队伍
+          加入房间
         </van-button>
         <van-button v-if="team.userId === currentUser?.id" size="small" plain
-                    @click="doUpdateTeam(team.id)">更新队伍
+                    @click="doUpdateTeam(team.id)">更新房间
         </van-button>
-        <!-- 仅加入队伍可见 -->
+        <!-- 仅加入房间可见 -->
         <van-button v-if="team.userId !== currentUser?.id && team.hasJoin" size="small" plain
-                    @click="doQuitTeam(team.id)">退出队伍
+                    @click="doQuitTeam(team.id)">退出房间
         </van-button>
         <van-button v-if="team.userId === currentUser?.id" size="small" type="danger" plain
-                    @click="doDeleteTeam(team.id)">解散队伍
+                    @click="doDeleteTeam(team.id)">解散房间
         </van-button>
       </template>
     </van-card>
@@ -95,7 +95,7 @@ const doJoinCancel = () => {
 }
 
 /**
- * 加入队伍
+ * 加入房间
  */
 const doJoinTeam = async () => {
   if (!joinTeamId.value) {
@@ -120,7 +120,7 @@ onMounted(async () => {
 })
 
 /**
- * 跳转至更新队伍页
+ * 跳转至更新房间页
  * @param id
  */
 const doUpdateTeam = (id: number) => {
@@ -133,7 +133,7 @@ const doUpdateTeam = (id: number) => {
 }
 
 /**
- * 退出队伍
+ * 退出房间
  * @param id
  */
 const doQuitTeam = async (id: number) => {
@@ -148,7 +148,7 @@ const doQuitTeam = async (id: number) => {
 }
 
 /**
- * 解散队伍
+ * 解散房间
  * @param id
  */
 const doDeleteTeam = async (id: number) => {

@@ -2,7 +2,11 @@ import axios, {AxiosInstance} from "axios";
 
 
 const myAxios: AxiosInstance = axios.create({
-    baseURL: 'http://localhost:8080/api'
+    baseURL: 'http://localhost:8080/api',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // 添加自定义请求头
+    }
 });
 
 myAxios.defaults.withCredentials = true; // 配置为true

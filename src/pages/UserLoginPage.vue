@@ -17,6 +17,7 @@
           :rules="[{ required: true, message: '请填写密码' }]"
       />
     </van-cell-group>
+    <router-link class="toRegister" to="register">没有账号，立即注册</router-link>
     <div style="margin: 16px;">
       <van-button round block type="primary" native-type="submit">
         提交
@@ -47,8 +48,9 @@ const onSubmit = async () => {
   if (res.code === 0 && res.data) {
     Toast.success('登录成功');
     // 跳转到之前的页面
-    const redirectUrl = route.query?.redirect as string ?? '/';
-    window.location.href = redirectUrl;
+    // const redirectUrl = route.query?.redirect as string ?? '/';
+    // window.location.href = redirectUrl;
+    router.push('/index')
   } else {
     Toast.fail('登录失败');
   }
@@ -56,5 +58,8 @@ const onSubmit = async () => {
 </script>
 
 <style scoped>
-
+.toRegister{
+  color: deepskyblue;
+  margin-left: 60%;
+}
 </style>

@@ -6,5 +6,17 @@ import styleImport, {VantResolve} from 'vite-plugin-style-import';
 export default defineConfig({
     plugins: [vue(), styleImport({
         resolves: [VantResolve()],
-    }),]
+    }),],
+    server: {
+        proxy: {
+            // 在此处编写代理规则
+            '/api': {
+                target: 'http://localhost:8080',
+                changeOrigin: true,
+                rewrite: (path) => {
+                    return path.replace(/\/api/, '')
+                }
+            }
+        }
+    }
 })

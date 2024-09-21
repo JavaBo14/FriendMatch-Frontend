@@ -14,7 +14,6 @@
     <van-cell title="注册时间" arrow-direction="down" :value="user.createTime"/>
   </template>
 
-
 </template>
 
 <script setup lang="ts">
@@ -25,17 +24,6 @@ import myAxios from "../plugins/myAxios";
 import {Toast} from "vant";
 import {getCurrentUser} from "../services/user";
 
-// const user = {
-//   id: 1,
-//   username: 'dingding',
-//   userAccount: 'dingjiaxiong',
-//   avatarUrl: 'https://avatars.githubusercontent.com/u/61930795?v=4',
-//   gender: '男',
-//   phone: '123112312',
-//   email: '12345@qq.com',
-//   planetCode: '19969',
-//   createTime: new Date(),
-// }
 
 const user = ref();
 

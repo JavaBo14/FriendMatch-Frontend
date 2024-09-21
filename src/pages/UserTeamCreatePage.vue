@@ -1,7 +1,7 @@
 <template>
   <div id="teamPage">
-    <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch" />
-    <van-button type="primary" @click="doJoinTeam">创建队伍</van-button>
+    <van-search v-model="searchText" placeholder="搜索房间" @search="onSearch" />
+    <van-button type="primary" @click="doJoinTeam">创建房间</van-button>
     <team-card-list :teamList="teamList" />
     <van-empty v-if="teamList?.length < 1" description="数据为空"/>
   </div>
@@ -18,7 +18,7 @@ import {Toast} from "vant";
 const router = useRouter();
 const searchText = ref('');
 
-// 跳转到加入队伍页
+// 跳转到加入房间页
 const doJoinTeam = () => {
   router.push({
     path: "/team/add"
@@ -28,7 +28,7 @@ const doJoinTeam = () => {
 const teamList = ref([]);
 
 /**
- * 搜索队伍
+ * 搜索房间
  * @param val
  * @returns {Promise<void>}
  */
@@ -42,7 +42,7 @@ const listTeam = async (val = '') => {
   if (res?.code === 0) {
     teamList.value = res.data;
   } else {
-    Toast.fail('加载队伍失败，请刷新重试');
+    Toast.fail('加载房间失败，请刷新重试');
   }
 }
 

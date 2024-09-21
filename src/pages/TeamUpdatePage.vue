@@ -5,17 +5,17 @@
         <van-field
             v-model="updateTeamData.name"
             name="name"
-            label="队伍名"
-            placeholder="请输入队伍名"
-            :rules="[{ required: true, message: '请输入队伍名' }]"
+            label="房间名"
+            placeholder="请输入房间名"
+            :rules="[{ required: true, message: '请输入房间名' }]"
         />
         <van-field
             v-model="updateTeamData.description"
             rows="4"
             autosize
-            label="队伍描述"
+            label="房间描述"
             type="textarea"
-            placeholder="请输入队伍描述"
+            placeholder="请输入房间描述"
         />
         <van-field
             is-link
@@ -36,7 +36,7 @@
         </van-popup>
 
 
-        <van-field name="radio" label="队伍状态">
+        <van-field name="radio" label="房间状态">
           <template #input>
             <van-radio-group v-model="updateTeamData.status" direction="horizontal">
               <van-radio name="0">公开</van-radio>
@@ -51,7 +51,7 @@
             type="password"
             name="password"
             label="密码"
-            placeholder="请输入队伍密码"
+            placeholder="请输入房间密码"
             :rules="[{ required: true, message: '请填写密码' }]"
         />
       </van-cell-group>
@@ -84,10 +84,10 @@ const route = useRoute();
 
 const id = route.query.id;
 
-// 获取之前的队伍信息
+// 获取之前的房间信息
 onMounted(async () => {
       if (id <= 0) {
-        Toast.fail('加载队伍失败');
+        Toast.fail('加载房间失败');
         return;
       }
       const res = await myAxios.get("/team/get", {
@@ -98,7 +98,7 @@ onMounted(async () => {
       if (res?.code === 0) {
         updateTeamData.value = res.data;
       } else {
-        Toast.fail('加载队伍失败，请刷新重试');
+        Toast.fail('加载房间失败，请刷新重试');
       }
     }
 )
