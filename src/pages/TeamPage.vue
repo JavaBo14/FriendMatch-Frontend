@@ -75,6 +75,7 @@ onMounted(() => {
   listTeam();
 })
 
+
 const onSearch = (val) => {
   listTeam(val);
 };

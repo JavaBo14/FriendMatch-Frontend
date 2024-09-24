@@ -19,10 +19,12 @@
           {{ `房间人数: ${team.hasJoinNum}/${team.maxNum}` }}
         </div>
         <div v-if="team.expireTime">
-          {{ '过期时间: ' + team.expireTime }}
+<!--            {{  '过期时间: ' + team.expireTime.split('T')[0] + ' ' + team.expireTime.split('T')[1].split('.')[0] }}-->
+            {{ '过期时间: ' + new Date(new Date(team.expireTime).getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[0] + ' ' + new Date(new Date(team.expireTime).getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[1].split('.')[0] }}
         </div>
         <div>
-          {{ '创建时间: ' + team.createTime }}
+<!--            {{ '创建时间: ' + team.createTime.split('T')[0] + ' ' + team.createTime.split('T')[1].split('.')[0] }}-->
+            {{ '创建时间: ' + new Date(new Date(team.createTime).getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[0] + ' ' + new Date(new Date(team.createTime).getTime() + 8 * 60 * 60 * 1000).toISOString().split('T')[1].split('.')[0] }}
         </div>
       </template>
 
@@ -31,7 +33,7 @@
                     @click="preJoinTeam(team)">
           加入房间
         </van-button>
-        <van-button v-if="team.userId === currentUser?.id" size="small" plain
+        <van-button v-if="team.userId === currentUser?.id || currentUser?.userRole == 1" size="small" plain
                     @click="doUpdateTeam(team.id)">更新房间
         </van-button>
         <!-- 仅加入房间可见 -->
@@ -81,9 +83,11 @@ const props = withDefaults(defineProps<TeamCardListProps>(), {
 
 
 const preJoinTeam = (team: TeamType) => {
+    console.log(11111111)
   joinTeamId.value = team.id;
   if (team.status === 0) {
     doJoinTeam()
+
   } else {
     showPasswordDialog.value = true;
   }
@@ -108,8 +112,10 @@ const doJoinTeam = async () => {
   if (res?.code === 0) {
     Toast.success('加入成功');
     doJoinCancel();
+      window.location.reload();
+
   } else {
-    Toast.fail('加入失败' + (res.description ? `，${res.description}` : ''));
+    Toast.fail('加入失败' + (res.message ? `，${res.message}` : ''));
   }
 }
 
@@ -142,8 +148,9 @@ const doQuitTeam = async (id: number) => {
   });
   if (res?.code === 0) {
     Toast.success('操作成功');
+      window.location.reload();
   } else {
-    Toast.fail('操作失败' + (res.description ? `，${res.description}` : ''));
+    Toast.fail('操作失败' + (res.message ? `，${res.message}` : ''));
   }
 }
 
@@ -157,12 +164,11 @@ const doDeleteTeam = async (id: number) => {
   });
   if (res?.code === 0) {
     Toast.success('操作成功');
+      window.location.reload();
   } else {
-    Toast.fail('操作失败' + (res.description ? `，${res.description}` : ''));
+    Toast.fail('操作失败' + (res.message ? `，${res.message}` : ''));
   }
 }
-
-
 </script>
 
 <style scoped>
