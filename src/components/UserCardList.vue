@@ -1,5 +1,5 @@
 <template>
-  <van-skeleton title avatar :row="3" :loading="props.loading" v-for="user in props.userList">
+  <van-skeleton title avatar :row="3" :loading="false" v-for="user in props.userList">
     <van-card
         :desc="user.profile"
         :title="`${user.username}（${user.planetCode}）`"

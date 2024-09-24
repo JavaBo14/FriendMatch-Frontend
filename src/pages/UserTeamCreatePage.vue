@@ -1,7 +1,7 @@
 <template>
   <div id="teamPage">
     <van-search v-model="searchText" placeholder="搜索房间" @search="onSearch" />
-    <van-button type="primary" @click="doJoinTeam">创建房间</van-button>
+<!--    <van-button type="primary" @click="doJoinTeam">创建房间</van-button>-->
     <team-card-list :teamList="teamList" />
     <van-empty v-if="teamList?.length < 1" description="数据为空"/>
   </div>
@@ -19,11 +19,11 @@ const router = useRouter();
 const searchText = ref('');
 
 // 跳转到加入房间页
-const doJoinTeam = () => {
-  router.push({
-    path: "/team/add"
-  })
-}
+// const doJoinTeam = () => {
+//   router.push({
+//     path: "/team/add"
+//   })
+// }
 
 const teamList = ref([]);
 

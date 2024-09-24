@@ -50,7 +50,11 @@ const onSubmit = async () => {
     // 跳转到之前的页面
     // const redirectUrl = route.query?.redirect as string ?? '/';
     // window.location.href = redirectUrl;
-    router.push('/index')
+    if (res.data.tagStatus === "wait"){
+      router.push('/choosetags')
+    }else {
+      router.push('/index')
+    }
   } else {
     Toast.fail('登录失败');
   }

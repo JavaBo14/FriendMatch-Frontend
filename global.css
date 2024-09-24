@@ -9,3 +9,17 @@
 
     z-index: 999;
 }
+
+
+.van-grid-item__content .van-grid-item__content--center .van-grid-item__content--surround .van-hairline {
+    /* 背景完全透明 */
+    background-color: transparent !important;
+
+}
+/* 去除 van-grid-item 的背景和边框 */
+.van-grid-item {
+    background-color: #6a11cb !important; /* 确保背景透明 */
+    border: none !important; /* 去掉可能的边框 */
+    box-shadow: none !important; /* 如果有阴影，也去掉 */
+    /*padding: 0 !important; !* 去掉内边距 *!*/
+}
